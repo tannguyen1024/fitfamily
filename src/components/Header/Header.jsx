@@ -13,6 +13,7 @@ import HomeIcon from '@material-ui/icons/Home';
 import ChatIcon from '@material-ui/icons/Chat';
 import CreateIcon from '@material-ui/icons/Create';
 import MenuIcon from '@material-ui/icons/Menu';
+import EqualizerIcon from '@material-ui/icons/Equalizer';
 
 class Header extends Component {
     render() {
@@ -24,7 +25,7 @@ class Header extends Component {
                     <Box className={classes.padding}>
                         <Grid container justify="space-around">
                             {page === 'home' ? <HomeIcon className={classes.icon_check} /> : <HomeIcon className={classes.icon} onClick={() => this.props.history.push('/home')}/>}
-                            {page === 'feed' ? <ChatIcon className={classes.icon_check} /> : <ChatIcon className={classes.icon} onClick={() => this.props.history.push('/feed')}/>}
+                            {page === 'progress' ? <EqualizerIcon className={classes.icon_check} /> : <EqualizerIcon className={classes.icon} onClick={() => this.props.history.push('/progress')}/>}
                             {page === 'workout' ? <CreateIcon className={classes.icon_check} /> : <CreateIcon className={classes.icon} onClick={() => this.props.history.push('/workout')}/>}
                             {page === 'setting' ? <MenuIcon className={classes.icon_check} /> : <MenuIcon className={classes.icon} onClick={() => this.props.history.push('/setting')}/>}
                         </Grid>

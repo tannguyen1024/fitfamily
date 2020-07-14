@@ -11,24 +11,24 @@ import '../Style/Swal.scss';
 // Header //
 import Header from '../Header/Header';
 
-class Start extends Component {
+class Progress extends Component {
     render() {
         const {classes} = this.props;
         return (
             <>
                 <Header history={this.props.history}/>
                 <Box className={classes.margin}>
-                    <h1>{this.props.user.username}'s Fitness Progress</h1>    
+                    <center><h1>{this.props.user.username}'s Progress</h1></center>
                 </Box>
             </>
         )
     }
 }
 
-Start.propTypes = { classes: PropTypes.object.isRequired };
+Progress.propTypes = { classes: PropTypes.object.isRequired };
 
 const putStateOnProps = reduxState => ({
     user: reduxState.user,
 });
 
-export default connect(putStateOnProps)(withStyles(styles)(Start));
+export default connect(putStateOnProps)(withStyles(styles)(Progress));

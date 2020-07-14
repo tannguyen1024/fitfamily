@@ -12,10 +12,10 @@ import { MuiThemeProvider } from '@material-ui/core/';
 import { createMuiTheme } from '@material-ui/core/styles';
 
 // Page Imports //
-import Start from '../Start/Start';
 import Setting from '../Setting/Setting';
 import Workout from '../Workout/Workout';
 import Feed from '../Feed/Feed';
+import Progress from '../Progress/Progress';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute'
@@ -64,10 +64,10 @@ class App extends Component {
             Even though it seems like they are different pages, the user is always on localhost:3000/home */}
             <Route exact path="/login" component={LoginPage} />
             <Route exact path="/register" component={RegisterPage} />
-            <ProtectedRoute exact path="/home" component={Start}/>
+            <ProtectedRoute exact path="/home" component={Feed}/>
             <ProtectedRoute exact path="/setting" component={Setting} />
+              <ProtectedRoute exact path="/progress" component={Progress} />
             <ProtectedRoute exact path="/workout" component={Workout} />
-            <ProtectedRoute exact path="/feed" component={Feed} />
             {/* This works the same as the other protected route, except that if the user is logged in,
             they will see the info page instead. */}
             {/* <ProtectedRoute

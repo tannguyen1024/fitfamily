@@ -17,7 +17,7 @@ class Workout extends Component {
             <>
                 <Header history={this.props.history}/>
                 <Box className={classes.margin}>
-                    <h1>{this.props.user.username}'s Workout</h1>
+                    <center><h1>{this.props.user.username}'s Workouts</h1></center>
                 </Box>
             </>
         )

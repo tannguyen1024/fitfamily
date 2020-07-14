@@ -17,7 +17,7 @@ class Setting extends Component {
             <>
                 <Header history={this.props.history}/>
                 <Box className={classes.margin}>
-                    <h1>{this.props.user.username}'s Settings</h1>
+                    <center><h1>{this.props.user.username}'s Settings</h1></center>
                 </Box>
             </>
         )

@@ -15,4 +15,37 @@ ORDER by date DESC;`;
     })
 });
 
+router.post('/', rejectUnauthenticated, (req, res) => {
+    const r = req.body;
+    const query = `INSERT INTO "feed" (user_id, comment) VALUES ($1, $2);`;
+    pool.query(query, [r.user_id, r.comment]).then(result => {
+        res.sendStatus(201);
+    }).catch(error => {
+        console.log(error);
+        res.sendStatus(500);
+    })
+});
+
+router.delete('/:id', rejectUnauthenticated, (req, res) => {
+    let id = req.params.id;
+    let query = `DELETE FROM feed WHERE id=$1;`
+    pool.query(query, [id]).then(result => {
+        res.sendStatus(200);
+    }).catch(error => {
+        console.log(error);
+        res.sendStatus(500);
+    })
+});
+
+router.put('/:id', rejectUnauthenticated, (req, res) => {
+    let id = req.params.id;
+    let query = `UPDATE feed SET "upvotes" = "upvotes" + 1 WHERE id=$1;`
+    pool.query(query, [id]).then(result => {
+        res.sendStatus(200);
+    }).catch(error => {
+        console.log(error);
+        res.sendStatus(500);
+    })
+});
+
 module.exports = router;
