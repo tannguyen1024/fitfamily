@@ -25,4 +25,15 @@ JOIN "user" ON "user".id = user_id WHERE "user".id = $1 ORDER by date DESC;`;
     })
 });
 
+router.post('/', rejectUnauthenticated, (req, res) => {
+    const r = req.body;
+    const query = `INSERT INTO "weight" (user_id, weight, date, private) VALUES ($1, $2, $3, $4);`;
+    pool.query(query, [r.user_id, r.weight, r.date, r.private]).then(result => {
+        res.sendStatus(201);
+    }).catch(error => {
+        console.log(error);
+        res.sendStatus(500);
+    })
+});
+
 module.exports = router;

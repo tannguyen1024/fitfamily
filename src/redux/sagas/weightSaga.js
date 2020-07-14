@@ -3,7 +3,18 @@ import { put, takeLatest } from 'redux-saga/effects';
 
 function* weightSaga() {
     yield takeLatest('FETCH_WEIGHT', fetchWeight);
-    yield takeLatest('FETCH_ONE_WEIGHT', fetchOneWeight)
+    yield takeLatest('FETCH_ONE_WEIGHT', fetchOneWeight);
+    yield takeLatest('POST_WEIGHT', postWeight);
+}
+
+function* postWeight(action) {
+    try {
+        yield axios.post('/weight', action.payload)
+        yield put({ type: 'FETCH_ONE_WEIGHT', payload: action.payload.user_id })
+    }
+    catch (error) {
+        console.log('Error in postWeight:', error);
+    }
 }
 
 function* fetchWeight() {

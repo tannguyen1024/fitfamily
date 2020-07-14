@@ -14,15 +14,23 @@ import Stats from './Stats';
 class Workout extends Component {
 
     state = {
-        user_id: '',
+        user_id: this.props.user.id,
         weight: '',
         date: '',
-        private: true,
+        private: 'true',
+    }
+
+    handleChange = (event, property) => {
+        this.setState({ ...this.state, [property]: event.target.value })
     }
 
     cancelSelect = (event) => {
         this.setState({ private: event.target.value });
     };
+
+    submitButton = () => {
+        this.props.dispatch({ type: 'POST_WEIGHT', payload: this.state }); /* Submits the weight */
+    }
 
     render() {
         const { classes } = this.props;
@@ -42,7 +50,7 @@ class Workout extends Component {
                                 fullWidth
                                 InputLabelProps={{
                                     shrink: true,
-                                }}
+                                    }} onChange={(event) => this.handleChange(event, 'date')}
                             />
                         </Grid>
                         <Grid item xs={12} sm={6}>
@@ -54,11 +62,12 @@ class Workout extends Component {
                                     shrink: true,
                                 }}
                                 placeholder="#"
+                                    onChange={(event) => this.handleChange(event, 'weight')}
                             />
                         </Grid>
 
 
-                        <InputLabel>Share with Others?</InputLabel>
+                        <InputLabel style={{marginTop: '10px'}}>Share with Others?</InputLabel>
                         <Grid container justify="center">
                             <Grid item xs={12} sm={1}>
                                 <center><Radio
@@ -82,7 +91,7 @@ class Workout extends Component {
                             </Grid>
                         </Grid>
 
-                        <Button color='primary' variant='contained' style={{ marginTop: '5px' }} onClick={this.postComment}>Post</Button>
+                            <Button color='primary' variant='contained' style={{ marginTop: '5px' }} onClick={this.submitButton}>Post</Button>
                     </Grid></Paper>
 
                     <Stats />
