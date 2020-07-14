@@ -88,8 +88,8 @@ class OneFeed extends Component {
         let date = moment(this.props.feed.date).format(`MMMM Do YYYY, h:mm a`);
         const { classes } = this.props;
         return (
-            <>
-                <Paper style={{ marginTop: '20px', padding: '5px', borderRadius: '5px', backgroundColor: '#ebebeb' }}>
+            
+            <Paper style={{ marginTop: '20px', padding: '5px', borderRadius: '5px', backgroundColor: '#f7f7f7' }}>
                     <Grid container justify='space-evenly' alignItems='stretch'>
                         <Grid item xs={1}>
                             <Avatar alt={this.props.feed.username} src={this.props.feed.picture} />
@@ -118,7 +118,7 @@ class OneFeed extends Component {
                         </Grid>
                     </Grid>
                 </Paper>
-            </>
+            
         )
     }
 }

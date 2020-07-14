@@ -10,21 +10,20 @@ import Swal from 'sweetalert2/src/sweetalert2.js';
 import '../Style/Swal.scss';
 // Header //
 import Header from '../Header/Header';
-import OneProgress from './OneProgress';
+import SingleStats from './SingleStats';
 
 class Progress extends Component {
 
     componentDidMount = () => {
-        this.props.dispatch({ type: 'FETCH_WEIGHT' }); /* Gets all of the weight */
+        this.props.dispatch({ type: 'FETCH_ONE_WEIGHT', payload: this.props.user.id }); /* Gets all of the weight */
     }
 
     render() {
         const { classes } = this.props;
         return (
             <>
-                <Header history={this.props.history} />
-                <Box className={classes.margin}>
-                    <center><h1>Fitness at a Glance</h1></center>
+                <Box>
+        <center><h1>Your History</h1></center>
 
                     <TableContainer component={Paper}>
                         <Table className={classes.table} aria-label="simple table">
@@ -37,7 +36,7 @@ class Progress extends Component {
                             </TableHead>
                             <TableBody>
                                 {this.props.weight.map((row) => (
-                                    <OneProgress key={row.weight_id} row={row}/>
+                                    <SingleStats key={row.weight_id} row={row}/>
                                 ))}
                             </TableBody>
                         </Table>
@@ -55,7 +54,7 @@ Progress.propTypes = { classes: PropTypes.object.isRequired };
 
 const putStateOnProps = reduxState => ({
     user: reduxState.user,
-    weight: reduxState.weight
+    weight: reduxState.oneWeight
 });
 
 export default connect(putStateOnProps)(withStyles(styles)(Progress));

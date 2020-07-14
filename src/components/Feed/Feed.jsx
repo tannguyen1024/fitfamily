@@ -49,7 +49,7 @@ class Feed extends Component {
                 <Header history={this.props.history} />
                 <Box className={classes.margin}>
                     <center><h1>{this.props.user.username}'s Fit Feed</h1></center>
-                    <Paper style={{ padding: '5px', borderRadius: '5px', backgroundColor: '#ebebeb' }}>
+                    <Paper style={{ padding: '5px', borderRadius: '5px', backgroundColor: '#ededed' }}>
                         <Grid container justify='space-evenly' alignItems='stretch'>
                             <Grid item xs={1}>
                                 <Avatar alt="Tan Nguyen" src={this.props.user.picture} style={{marginRight: '5px'}}/>
@@ -66,7 +66,7 @@ class Feed extends Component {
                     </Paper>
                         
                         {this.props.feed.map(feed =>
-                            <OneFeed feed={feed}/>
+                            <OneFeed key={feed.feed_id}  feed={feed}/>
                         )}
 
                 </Box>
