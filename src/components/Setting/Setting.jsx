@@ -18,7 +18,7 @@ class Setting extends Component {
                 <Header history={this.props.history}/>
                 <Box className={classes.margin}>
                     <center><h1>{this.props.user.username}'s Settings</h1></center>
-                    Coming Soon
+                    Coming Soon: Change Profile Picture.
                 </Box>
             </>
         )
