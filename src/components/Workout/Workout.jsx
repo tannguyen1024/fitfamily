@@ -17,7 +17,7 @@ class Workout extends Component {
         user_id: this.props.user.id,
         weight: '',
         date: '',
-        private: 'true',
+        private: 'false',
     }
 
     handleChange = (event, property) => {
@@ -29,7 +29,32 @@ class Workout extends Component {
     };
 
     submitButton = () => {
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'bottom',
+            showConfirmButton: false,
+            timer: 2500,
+            timerProgressBar: true,
+            onOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        })
+        if (this.state.date === '') {
+            Toast.fire({
+                title: 'Please choose a date and time'
+            }); return
+        }
+        if (this.state.weight === '') {
+            Toast.fire({
+                title: 'Please enter a weight'
+            }); return
+        }
         this.props.dispatch({ type: 'POST_WEIGHT', payload: this.state }); /* Submits the weight */
+        Toast.fire({
+            icon: 'success',
+            title: 'Weight posted, great job!'
+        });
     }
 
     render() {
@@ -69,7 +94,17 @@ class Workout extends Component {
 
                         <InputLabel style={{marginTop: '10px'}}>Share with Others?</InputLabel>
                         <Grid container justify="center">
-                            <Grid item xs={12} sm={1}>
+                                <Grid item xs={12} sm={1}>
+                                    <center><Radio
+                                        color="primary"
+                                        checked={cancelValue === 'false'}
+                                        onChange={this.cancelSelect}
+                                        value='false'
+                                        name="radio-button-demo"
+                                        inputProps={{ 'aria-label': 'FALSE' }}
+                                    />Yes</center>
+                                </Grid>
+                                <Grid item xs={12} sm={1}>
                                 <center><Radio
                                     color="primary"
                                     checked={cancelValue === 'true'}
@@ -77,18 +112,9 @@ class Workout extends Component {
                                     value='true'
                                     name="radio-button-demo"
                                     inputProps={{ 'aria-label': 'TRUE' }}
-                                />Yes</center>
-                                    </Grid>
-                            <Grid item xs={12} sm={1}>
-                                <center><Radio
-                                    color="primary"
-                                    checked={cancelValue === 'false'}
-                                    onChange={this.cancelSelect}
-                                    value='false'
-                                    name="radio-button-demo"
-                                    inputProps={{ 'aria-label': 'FALSE' }}
                                 />No</center>
-                            </Grid>
+                                    </Grid>
+                            
                         </Grid>
 
                             <Button color='primary' variant='contained' style={{ marginTop: '5px' }} onClick={this.submitButton}>Post</Button>
