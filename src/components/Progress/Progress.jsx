@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import styles from '../Style/Style';
-import { Box, Paper, Table, TableBody, TableCell, TableHead, TableContainer, TablePagination, TableRow } from '@material-ui/core'
+import { Box, Button, Paper, Table, TableBody, TableCell, TableHead, TableContainer, TablePagination, TableRow } from '@material-ui/core'
 // Sweet Alert 2 //
 import Swal from 'sweetalert2/src/sweetalert2.js';
 import '../Style/Swal.scss';
@@ -43,7 +43,7 @@ class Progress extends Component {
                         </Table>
                     </TableContainer>
 
-
+                    <center><Button variant="contained" color="primary" onClick={() => window.scrollTo(0, 0)} style={{ margin: '20px' }}>Return to Top</Button></center>
 
                 </Box>
             </>

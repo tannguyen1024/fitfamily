@@ -68,7 +68,7 @@ class Feed extends Component {
                         {this.props.feed.map(feed =>
                             <OneFeed key={feed.feed_id}  feed={feed}/>
                         )}
-
+                    <center><Button variant="contained" color="primary" onClick={() => window.scrollTo(0, 0)} style={{margin: '20px'}}>Return to Top</Button></center>
                 </Box>
             </>
         )

@@ -17,7 +17,7 @@ class Setting extends Component {
             <>
                 <Header history={this.props.history} />
                 <Box className={classes.margin}>
-                    <center><h1>{this.props.user.username}'s Settings</h1></center>
+                    
 
 
                     <Paper style={{ padding: '5px', borderRadius: '5px', backgroundColor: '#ededed' }}>
@@ -28,9 +28,9 @@ class Setting extends Component {
                                 </Box>
                             </Grid>
                             <Grid item xs={8}>
-                                <Typography>
-                                    {this.props.user.display}'s Info
-                                </Typography>
+                                <center><Typography variant="h5">
+                                    {this.props.user.display}'s Profile
+                                </Typography></center>
                             </Grid>
                         </Grid>
                     </Paper>
