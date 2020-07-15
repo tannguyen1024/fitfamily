@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import styles from '../Style/Style';
-import { Box } from '@material-ui/core'
+import { Box, Grid, Typography, Divider, Paper, Avatar, TextField, Button } from '@material-ui/core'
 // Sweet Alert 2 //
 import Swal from 'sweetalert2/src/sweetalert2.js';
 import '../Style/Swal.scss';
@@ -18,7 +18,29 @@ class Setting extends Component {
                 <Header history={this.props.history}/>
                 <Box className={classes.margin}>
                     <center><h1>{this.props.user.username}'s Settings</h1></center>
-                    Coming Soon: Change Profile Picture.
+                    
+                    
+                    <Paper style={{ padding: '5px', borderRadius: '5px', backgroundColor: '#ededed' }}>
+                        <Grid container justify='flex-start' alignItems='center'>
+                            <Grid item xs={2}>
+                                <Box minWidth='50px'>
+                                    <img width='50px' src={this.props.user.picture} style={{  borderRadius: '10%' }} alt="Tan Nguyen" />
+                                </Box>
+                            </Grid>
+                            <Grid item xs={8}>
+                                <Typography>
+                                    {this.props.user.username} {this.props.user.phone}
+                                    </Typography>
+                            </Grid>
+                        </Grid>
+                        <Grid container justify='center' alignItems='center'>
+                            <Grid item xs={1}>
+                                
+                            </Grid>
+                        </Grid>
+                    </Paper>
+                    
+                    
                 </Box>
             </>
         )
