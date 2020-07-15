@@ -32,6 +32,7 @@ class Progress extends Component {
                                     <TableCell>Name</TableCell>
                                     <TableCell align="left">Date</TableCell>
                                     <TableCell align="left">Weight</TableCell>
+                                    <TableCell align="left">Delete</TableCell>
                                 </TableRow>
                             </TableHead>
                             <TableBody>

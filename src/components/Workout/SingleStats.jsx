@@ -5,12 +5,78 @@ import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import styles from '../Style/Style';
 import { TableCell, TableRow } from '@material-ui/core'
+import DeleteIcon from '@material-ui/icons/Delete';
 // Sweet Alert 2 //
+import Swal from 'sweetalert2/src/sweetalert2.js';
 import '../Style/Swal.scss';
 // Moment.js //
 const moment = require('moment');
 
 class OneProgress extends Component {
+    deleteClick = () => {
+        let date = moment(this.props.row.date).format(`MMMM Do YYYY`);
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'bottom',
+            showConfirmButton: false,
+            timer: 2000,
+            timerProgressBar: true,
+            onOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        })
+        Swal.fire({
+            input: 'textarea',
+            inputPlaceholder: `Type "DELETE" Here and press Confirm`,
+            inputAttributes: {
+                'aria-label': 'New Event Name'
+            },
+            title: `Delete This Entry?`,
+            text: this.props.row.weight + 'lbs on ' + date,
+            showCancelButton: true,
+            confirmButtonColor: '#296EC8',
+            cancelButtonColor: '#F45255',
+            confirmButtonText: 'Confirm',
+            cancelButtonText: 'Cancel',
+            reverseButtons: true,
+        }).then(result => {
+            if (result.value === 'DELETE') {
+                this.props.dispatch({ type: 'DELETE_WEIGHT', payload: this.props.row.weight_id, user: this.props.user.id })
+                let timerInterval
+                Swal.fire({
+                    title: `Entry Removed`,
+                    html: `No proof of that one!`,
+                    timer: 2500,
+                    timerProgressBar: true,
+                    onBeforeOpen: () => {
+                        Swal.showLoading()
+                        timerInterval = setInterval(() => {
+                            const content = Swal.getContent()
+                            if (content) {
+                                const b = content.querySelector('b')
+                                if (b) {
+                                    b.textContent = Swal.getTimerLeft()
+                                }
+                            }
+                        }, 100)
+                    },
+                    onClose: () => {
+                        clearInterval(timerInterval)
+                    }
+                }).then((result) => {
+                    /* Read more about handling dismissals below */
+                    if (result.dismiss === Swal.DismissReason.timer) { }
+                })
+            }
+            else if (result.value !== 'DELETE') {
+                Toast.fire({
+                    title: 'Entry was not deleted'
+                })
+            }
+        })
+    }
+    
     render() {
         let date = moment(this.props.row.date).format(`MMMM Do YYYY, h:mm a`);
         return (
@@ -19,6 +85,7 @@ class OneProgress extends Component {
                     <TableCell component="th" scope="row">{this.props.row.username}</TableCell>
                     <TableCell align="left">{date}</TableCell>
                     <TableCell align="left">{this.props.row.weight}</TableCell>
+                    <TableCell><DeleteIcon onClick={this.deleteClick}/></TableCell> 
                 </TableRow>
             
         )
@@ -28,7 +95,7 @@ class OneProgress extends Component {
 OneProgress.propTypes = { classes: PropTypes.object.isRequired };
 
 const putStateOnProps = reduxState => ({
-    reduxState
+    user: reduxState.user
 });
 
 export default connect(putStateOnProps)(withStyles(styles)(OneProgress));

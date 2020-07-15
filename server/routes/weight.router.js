@@ -36,4 +36,15 @@ router.post('/', rejectUnauthenticated, (req, res) => {
     })
 });
 
+router.delete('/:id', rejectUnauthenticated, (req, res) => {
+    let id = req.params.id;
+    let query = `DELETE FROM weight WHERE id=$1;`
+    pool.query(query, [id]).then(result => {
+        res.sendStatus(200);
+    }).catch(error => {
+        console.log(error);
+        res.sendStatus(500);
+    })
+});
+
 module.exports = router;

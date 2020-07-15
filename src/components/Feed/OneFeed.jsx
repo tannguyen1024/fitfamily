@@ -10,7 +10,6 @@ import DeleteIcon from '@material-ui/icons/Delete';
 // Sweet Alert 2 //
 import Swal from 'sweetalert2/src/sweetalert2.js';
 import '../Style/Swal.scss';
-import Header from '../Header/Header';
 // Moment.js //
 const moment = require('moment');
 

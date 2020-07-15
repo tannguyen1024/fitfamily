@@ -5,6 +5,7 @@ function* weightSaga() {
     yield takeLatest('FETCH_WEIGHT', fetchWeight);
     yield takeLatest('FETCH_ONE_WEIGHT', fetchOneWeight);
     yield takeLatest('POST_WEIGHT', postWeight);
+    yield takeLatest('DELETE_WEIGHT', deleteWeight);
 }
 
 function* postWeight(action) {
@@ -34,6 +35,17 @@ function* fetchOneWeight(action) {
     }
     catch (error) {
         console.log('Error in fetchOneWeight:', error);
+    }
+}
+
+function* deleteWeight(action) {
+    try {
+        let weight_id = action.payload;
+        yield axios.delete(`/weight/${weight_id}`, action.payload);
+        yield put({ type: 'FETCH_ONE_WEIGHT', payload: action.user });
+    }
+    catch (error) {
+        console.log('Error in deleteFeed:', error);
     }
 }
 
