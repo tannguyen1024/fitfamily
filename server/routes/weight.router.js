@@ -26,7 +26,7 @@ JOIN "user" ON "user".id = user_id WHERE "user".id = $1 ORDER by date DESC;`;
 });
 
 router.get('/chart/:id', (req, res) =>{
-    let query =`SELECT "user".id as user_id, username, json_agg(DISTINCT jsonb_build_object('date', TO_CHAR(date, 'MM-DD'), 'weight', weight)) AS weight
+    let query =`SELECT "user".id as user_id, username, json_agg(DISTINCT jsonb_build_object('date', TO_CHAR(date, 'YYYY-MM-DD'), 'weight', weight)) AS weight
 FROM "weight"
 JOIN "user" ON "user".id = user_id 
 WHERE "user".id = $1 
