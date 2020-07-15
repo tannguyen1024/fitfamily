@@ -145,7 +145,7 @@ class Workout extends Component {
                             <Button color='primary' variant='contained' style={{ marginTop: '5px' }} onClick={this.submitButton}>Post</Button>
                     </Grid></Paper>
 
-                    <Stats />
+                    <Stats history={this.props.history}/>
 
                 </Box>
             </>

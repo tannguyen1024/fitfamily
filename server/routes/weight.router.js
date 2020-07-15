@@ -25,6 +25,20 @@ JOIN "user" ON "user".id = user_id WHERE "user".id = $1 ORDER by date DESC;`;
     })
 });
 
+router.get('/chart/:id', (req, res) =>{
+    let query =`SELECT "user".id as user_id, username, json_agg(DISTINCT jsonb_build_object('date', TO_CHAR(date, 'MM-DD'), 'weight', weight)) AS weight
+FROM "weight"
+JOIN "user" ON "user".id = user_id 
+WHERE "user".id = $1 
+GROUP by "user".id;`;
+    pool.query(query, [req.params.id]).then((result) => {
+        res.send(result.rows);
+    }).catch((error) => {
+        console.log('weight.router.js error:', error)
+        alert('Error with GET route in weight.router.js')
+    })
+})
+
 router.post('/', rejectUnauthenticated, (req, res) => {
     const r = req.body;
     const query = `INSERT INTO "weight" (user_id, weight, date, private) VALUES ($1, $2, $3, $4);`;

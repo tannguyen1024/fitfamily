@@ -4,13 +4,14 @@ import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import styles from '../Style/Style';
-import { Box, Paper, Table, TableBody, TableCell, TableHead, TableContainer, TablePagination, TableRow } from '@material-ui/core'
+import { Divider, Box, Paper, Table, TableBody, TableCell, TableHead, TableContainer, TablePagination, TableRow } from '@material-ui/core'
 // Sweet Alert 2 //
 import Swal from 'sweetalert2/src/sweetalert2.js';
 import '../Style/Swal.scss';
 // Header //
 import Header from '../Header/Header';
 import SingleStats from './SingleStats';
+import Chart from './Chart';
 
 class Progress extends Component {
 
@@ -23,6 +24,9 @@ class Progress extends Component {
         return (
             <>
                 <Box>
+                    <Divider/>
+                    <Chart weight={this.props.weight} history={this.props.history} />
+<Divider/>
         <center><h1>Your History</h1></center>
 
                     <TableContainer component={Paper}>
@@ -43,7 +47,7 @@ class Progress extends Component {
                         </Table>
                     </TableContainer>
 
-
+                
 
                 </Box>
             </>
