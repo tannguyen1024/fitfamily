@@ -12,7 +12,7 @@ const moment = require('moment');
 
 class OneProgress extends Component {
     render() {
-        let date = moment(this.props.row.date).format(`MMMM Do YYYY, h:mm a`);
+        let date = moment(this.props.row.date).format(`MMM DD, YYYY h:mm a`);
         return (
             
                 <TableRow>
