@@ -33,7 +33,7 @@ class Workout extends Component {
             toast: true,
             position: 'bottom',
             showConfirmButton: false,
-            timer: 2500,
+            timer: 3000,
             timerProgressBar: true,
             onOpen: (toast) => {
                 toast.addEventListener('mouseenter', Swal.stopTimer)
@@ -51,10 +51,33 @@ class Workout extends Component {
             }); return
         }
         this.props.dispatch({ type: 'POST_WEIGHT', payload: this.state }); /* Submits the weight */
-        Toast.fire({
+        this.setState({weight: '', date: ''})
+        let timerInterval
+        Swal.fire({
+            title: `Weight Added`,
+            html: `Great Job!  Get that fitness!`,
+            timer: 3000,
             icon: 'success',
-            title: 'Weight posted, great job!'
-        });
+            timerProgressBar: true,
+            onBeforeOpen: () => {
+                Swal.showLoading()
+                timerInterval = setInterval(() => {
+                    const content = Swal.getContent()
+                    if (content) {
+                        const b = content.querySelector('b')
+                        if (b) {
+                            b.textContent = Swal.getTimerLeft()
+                        }
+                    }
+                }, 100)
+            },
+            onClose: () => {
+                clearInterval(timerInterval)
+            }
+        }).then((result) => {
+            /* Read more about handling dismissals below */
+            if (result.dismiss === Swal.DismissReason.timer) { }
+        })
     }
 
     render() {
@@ -73,6 +96,7 @@ class Workout extends Component {
                                 label="Date & Time"
                                 type="datetime-local"
                                 fullWidth
+                                value={this.state.date}
                                 InputLabelProps={{
                                     shrink: true,
                                     }} onChange={(event) => this.handleChange(event, 'date')}
@@ -83,6 +107,7 @@ class Workout extends Component {
                                 label="Weight"
                                 type="number"
                                 fullWidth
+                                value={this.state.weight}
                                 InputLabelProps={{
                                     shrink: true,
                                 }}

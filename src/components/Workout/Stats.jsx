@@ -29,9 +29,9 @@ class Progress extends Component {
                         <Table className={classes.table} aria-label="simple table">
                             <TableHead>
                                 <TableRow>
-                                    <TableCell>Name</TableCell>
-                                    <TableCell align="left">Date</TableCell>
+                                    <TableCell>Date</TableCell>
                                     <TableCell align="left">Weight</TableCell>
+                                    <TableCell align="left">Shared</TableCell>
                                     <TableCell align="left">Delete</TableCell>
                                 </TableRow>
                             </TableHead>

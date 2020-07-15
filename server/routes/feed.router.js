@@ -4,7 +4,7 @@ const router = express.Router();
 const { rejectUnauthenticated } = require('../modules/authentication-middleware');
 
 router.get('/', (req, res) => {
-    let query = `SELECT feed.id as feed_id, "user".id as user_id, username, comment, date, picture, upvotes FROM "feed" JOIN 
+    let query = `SELECT feed.id as feed_id, "user".id as user_id, username, display, comment, date, picture, upvotes FROM "feed" JOIN 
 "user" ON "user".id = user_id
 ORDER by date DESC;`;
     pool.query(query).then((result) => {

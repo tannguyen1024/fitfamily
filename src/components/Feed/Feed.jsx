@@ -55,7 +55,7 @@ class Feed extends Component {
                                 <Avatar alt="Tan Nguyen" src={this.props.user.picture} style={{marginRight: '5px'}}/>
                             </Grid>
                             <Grid item xs={10}>
-                                <TextField style={{ paddingLeft: '10px' }} size='small' variant='outlined' value={this.state.comment} fullWidth multiline placeholder={`Post your fitness here, ` + this.props.user.username + '!'} onChange={(event) => this.handleChange(event)}/>
+                                <TextField style={{ paddingLeft: '10px' }} size='small' variant='outlined' value={this.state.comment} fullWidth multiline placeholder={`Post your fitness here, ` + this.props.user.display + '!'} onChange={(event) => this.handleChange(event)}/>
                             </Grid>
                         </Grid>
                         <Grid container justify='center' alignItems='center'>

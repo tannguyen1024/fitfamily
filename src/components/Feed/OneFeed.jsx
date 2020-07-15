@@ -34,7 +34,7 @@ class OneFeed extends Component {
                 'aria-label': 'New Event Name'
             },
             title: `Delete comment?`,
-            text: this.props.feed.username + ': ' + this.props.feed.comment,
+            text: this.props.feed.display + ': ' + this.props.feed.comment,
             // icon: 'error',
             showCancelButton: true,
             confirmButtonColor: '#296EC8',
@@ -91,11 +91,11 @@ class OneFeed extends Component {
             <Paper style={{ marginTop: '20px', padding: '5px', borderRadius: '5px', backgroundColor: '#f7f7f7' }}>
                     <Grid container justify='space-evenly' alignItems='stretch'>
                         <Grid item xs={1}>
-                            <Avatar alt={this.props.feed.username} src={this.props.feed.picture} />
+                            <Avatar alt={this.props.feed.display} src={this.props.feed.picture} />
                         </Grid>
                         <Grid item xs={10}>
                             <Typography style={{ marginLeft: '10px' }}>
-                                <span style={{ fontWeight: '600' }}>{this.props.feed.username} </span></Typography>
+                            <span style={{ fontWeight: '600' }}>{this.props.feed.display} </span></Typography>
                             <Typography style={{ marginLeft: '10px' }}>
                                 <span style={{ fontWeight: '400', fontSize: '12px' }}>{date} </span></Typography>
                             

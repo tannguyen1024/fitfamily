@@ -82,9 +82,9 @@ class OneProgress extends Component {
         return (
             
                 <TableRow>
-                    <TableCell component="th" scope="row">{this.props.row.username}</TableCell>
-                    <TableCell align="left">{date}</TableCell>
+                    <TableCell component="th">{date}</TableCell>
                     <TableCell align="left">{this.props.row.weight}</TableCell>
+                <TableCell>{this.props.row.private ? <span style={{ color: 'blue' }}>No</span> : <span style={{ color: 'green' }}>Yes</span> }</TableCell> 
                     <TableCell><DeleteIcon onClick={this.deleteClick}/></TableCell> 
                 </TableRow>
             

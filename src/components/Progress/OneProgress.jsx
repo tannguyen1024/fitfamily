@@ -16,7 +16,7 @@ class OneProgress extends Component {
         return (
             
                 <TableRow>
-                    <TableCell component="th" scope="row">{this.props.row.username}</TableCell>
+                    <TableCell component="th" scope="row">{this.props.row.display}</TableCell>
                     <TableCell align="left">{date}</TableCell>
                     <TableCell align="left">{this.props.row.weight}</TableCell>
                 </TableRow>
