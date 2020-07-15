@@ -11,7 +11,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import Swal from 'sweetalert2/src/sweetalert2.js';
 import '../Style/Swal.scss';
 // Moment.js //
-const moment = require('moment');
+const moment = require('moment-timezone');
 
 class OneFeed extends Component {
 
@@ -84,7 +84,7 @@ class OneFeed extends Component {
     }
 
     render() {
-        let date = moment(this.props.feed.date).format(`MMMM Do YYYY, h:mm a`);
+        let date = moment(this.props.feed.date).tz('America/Chicago').format(`MMMM Do YYYY, h:mm a`);
         const { classes } = this.props;
         return (
             
