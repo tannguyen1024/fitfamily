@@ -10,11 +10,11 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import Swal from 'sweetalert2/src/sweetalert2.js';
 import '../Style/Swal.scss';
 // Moment.js //
-const moment = require('moment');
+const moment = require('moment-timezone');
 
 class OneProgress extends Component {
     deleteClick = () => {
-        let date = moment(this.props.row.date).format(`MMMM Do YYYY`);
+        let date = moment(this.props.row.date).tz('America/Chicago').format(`MMMM Do YYYY`);
         const Toast = Swal.mixin({
             toast: true,
             position: 'bottom',

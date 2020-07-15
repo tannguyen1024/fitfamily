@@ -84,7 +84,7 @@ class OneFeed extends Component {
     }
 
     render() {
-        let date = moment(this.props.feed.date).tz('America/Chicago').format(`MMMM Do YYYY, h:mm a`);
+        let date = moment(this.props.feed.date).tz('Pacific/Hono').format(`MMMM Do YYYY, h:mm a`);
         const { classes } = this.props;
         return (
             
