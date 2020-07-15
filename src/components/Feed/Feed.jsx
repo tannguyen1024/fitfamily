@@ -52,7 +52,7 @@ class Feed extends Component {
                     <Paper style={{ padding: '5px', borderRadius: '5px', backgroundColor: '#ededed' }}>
                         <Grid container justify='space-evenly' alignItems='stretch'>
                             <Grid item xs={1}>
-                                <Avatar alt="Tan Nguyen" src={this.props.user.picture} style={{marginRight: '5px'}}/>
+                                <Avatar alt={this.props.user.username} src={this.props.user.picture} style={{marginRight: '5px'}}/>
                             </Grid>
                             <Grid item xs={10}>
                                 <TextField style={{ paddingLeft: '10px' }} size='small' variant='outlined' value={this.state.comment} fullWidth multiline placeholder={`Post your fitness here, ` + this.props.user.display + '!'} onChange={(event) => this.handleChange(event)}/>

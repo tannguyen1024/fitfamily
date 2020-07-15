@@ -12,35 +12,49 @@ import Header from '../Header/Header';
 
 class Setting extends Component {
     render() {
-        const {classes} = this.props;
+        const { classes } = this.props;
         return (
             <>
-                <Header history={this.props.history}/>
+                <Header history={this.props.history} />
                 <Box className={classes.margin}>
                     <center><h1>{this.props.user.username}'s Settings</h1></center>
-                    
-                    
+
+
                     <Paper style={{ padding: '5px', borderRadius: '5px', backgroundColor: '#ededed' }}>
                         <Grid container justify='flex-start' alignItems='center'>
                             <Grid item xs={2}>
                                 <Box minWidth='50px'>
-                                    <img width='50px' src={this.props.user.picture} style={{  borderRadius: '10%' }} alt="Tan Nguyen" />
+                                    {this.props.user.picture ? <img width='50px' src={this.props.user.picture} style={{ borderRadius: '10%' }} alt="Picture" /> : <img width='50px' src='/images/No_Avatar.png' style={{ borderRadius: '10%' }} alt="Picture" />}
                                 </Box>
                             </Grid>
                             <Grid item xs={8}>
                                 <Typography>
-                                    {this.props.user.username} {this.props.user.phone}
-                                    </Typography>
-                            </Grid>
-                        </Grid>
-                        <Grid container justify='center' alignItems='center'>
-                            <Grid item xs={1}>
-                                
+                                    {this.props.user.display}'s Info
+                                </Typography>
                             </Grid>
                         </Grid>
                     </Paper>
-                    
-                    
+                    <Paper style={{ padding: '5px', borderRadius: '5px', backgroundColor: '#FFFFFF' }}>
+                        <Grid container justify='center' alignItems='center'>
+                            <Grid item xs={12}>
+                                <Typography>Username: {this.props.user.username}</Typography>
+                            </Grid>
+                            <Grid item xs={12}>
+                                <Typography>Display Name: {this.props.user.display}</Typography>
+                            </Grid>
+                            <Grid item xs={12}>
+                                <Typography>Phone: {this.props.user.phone}</Typography>
+                            </Grid>
+                            <Grid item xs={12}>
+                                <Typography>Email: {this.props.user.email}</Typography>
+                            </Grid>
+                            <Grid item xs={12}>
+                                <Typography>Picture URL: {this.props.user.picture}</Typography>
+                            </Grid>
+
+                        </Grid>
+                    </Paper>
+
                 </Box>
             </>
         )

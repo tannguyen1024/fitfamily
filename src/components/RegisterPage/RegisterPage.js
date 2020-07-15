@@ -11,10 +11,11 @@ import '../Style/Swal.scss';
 class RegisterPage extends Component {
   state = {
     username: '', 
+    display: '',
     password: '',
     email: '',
     phone: '',
-    picture: '',
+    picture: null,
   };
 
   registerUser = (event) => {
@@ -54,8 +55,9 @@ class RegisterPage extends Component {
         type: 'REGISTER',
         payload: {
           username: this.state.username,
+          display: this.state.display,
           password: this.state.password,
-          name: this.state.email,
+          email: this.state.email,
           phone: this.state.phone,
           picture: this.state.picture
         },
@@ -88,12 +90,20 @@ class RegisterPage extends Component {
           <center><h1>New User</h1></center>
           <div>
             <TextField
-              label="Login/Display Name"
+              label="Login Name"
               placeholder="Case Sensitive"
               fullWidth
               onChange={this.handleInputChangeFor('username')}
             />
           </div>
+            <div>
+              <TextField
+                label="Display Name"
+                placeholder="This is seen by others"
+                fullWidth
+                onChange={this.handleInputChangeFor('display')}
+              />
+            </div>
           <div>
             <TextField
               label="Phone Number"
@@ -109,7 +119,7 @@ class RegisterPage extends Component {
               label="Email Address"
               fullWidth
               type="text"
-              name="username"
+              name="email"
               value={this.state.email}
               onChange={this.handleInputChangeFor('email')}
             />
