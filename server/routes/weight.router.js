@@ -50,6 +50,21 @@ router.post('/', rejectUnauthenticated, (req, res) => {
     })
 });
 
+router.post('/feed', rejectUnauthenticated, (req, res) => {
+    const r = req.body;
+    let tenDate = r.date;
+    if (tenDate.length > 10) tenDate = tenDate.substring(0, 10);
+    const m = ('logged ' + r.weight + 'lbs for ' + tenDate);
+    console.log('New Message is:', m)
+    const query = `INSERT INTO "feed" (user_id, comment, weight) VALUES ($1, $2, $3);`;
+    pool.query(query, [r.user_id, m, true]).then(result => {
+        res.sendStatus(201);
+    }).catch(error => {
+        console.log(error);
+        res.sendStatus(500);
+    })
+});
+
 router.delete('/:id', rejectUnauthenticated, (req, res) => {
     let id = req.params.id;
     let query = `DELETE FROM weight WHERE id=$1;`

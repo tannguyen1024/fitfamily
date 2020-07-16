@@ -11,7 +11,12 @@ function* weightSaga() {
 
 function* postWeight(action) {
     try {
+        console.log('Req Body is:', action.payload)
         yield axios.post('/weight', action.payload)
+        console.log ('Private is:', action.payload.private)
+        if (action.payload.private === "false") {
+            yield axios.post('/weight/feed', action.payload)
+        }
         yield put({ type: 'FETCH_ONE_WEIGHT', payload: action.payload.user_id })
         yield put({ type: 'FETCH_CHART', payload: action.payload.user_id })
     }

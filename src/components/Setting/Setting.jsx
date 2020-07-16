@@ -11,6 +11,10 @@ import '../Style/Swal.scss';
 import Header from '../Header/Header';
 
 class Setting extends Component {
+    state = {
+        editMode: false
+    }
+    
     render() {
         const { classes } = this.props;
         return (
@@ -18,8 +22,6 @@ class Setting extends Component {
                 <Header history={this.props.history} />
                 <Box className={classes.margin}>
                     
-
-
                     <Paper style={{ padding: '5px', borderRadius: '5px', backgroundColor: '#ededed' }}>
                         <Grid container justify='flex-start' alignItems='center'>
                             <Grid item xs={2}>
@@ -34,6 +36,7 @@ class Setting extends Component {
                             </Grid>
                         </Grid>
                     </Paper>
+                    
                     <Paper style={{ padding: '5px', borderRadius: '5px', backgroundColor: '#FFFFFF' }}>
                         <Grid container justify='center' alignItems='center'>
                             <Grid item xs={12}>
@@ -51,7 +54,6 @@ class Setting extends Component {
                             <Grid item xs={12}>
                                 <Typography>Picture URL: {this.props.user.picture}</Typography>
                             </Grid>
-
                         </Grid>
                     </Paper>
 
