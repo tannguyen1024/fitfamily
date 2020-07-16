@@ -55,7 +55,7 @@ function* deleteWeight(action) {
         let weight_id = action.payload;
         yield axios.delete(`/weight/${weight_id}`, action.payload);
         yield put({ type: 'FETCH_ONE_WEIGHT', payload: action.user });
-        yield put({ type: 'FETCH_CHART', payload: action.payload.user_id })
+        yield put({ type: 'FETCH_CHART', payload: action.user });
     }
     catch (error) {
         console.log('Error in deleteFeed:', error);
