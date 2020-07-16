@@ -12,7 +12,7 @@ import Header from '../Header/Header';
 
 class Setting extends Component {
     state = {
-        editMode: true,
+        editMode: false,
         user_id: this.props.user.id,
         username: this.props.user.username,
         display: this.props.user.display,
