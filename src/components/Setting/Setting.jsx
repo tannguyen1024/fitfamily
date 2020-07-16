@@ -25,6 +25,24 @@ class Setting extends Component {
         this.setState({editMode: true})
     }
 
+    cancelClick = () => {
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'bottom',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            onOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        })
+        Toast.fire({
+            title: 'Changes were discarded'
+        });
+        this.setState({ editMode: false })
+    }
+
     submitClick = () => {
         const Toast = Swal.mixin({
             toast: true,
@@ -143,7 +161,7 @@ class Setting extends Component {
                                     <TextField onChange={(event) => this.handleChange(event, 'picture')} fullWidth multiline label="Profile Image URL" size="small" variant='outlined' defaultValue={this.props.user.picture} />
                         </Grid>
                     </Grid>
-                            <center><Button onClick={() => this.submitClick()} variant="contained" color="primary" style={{ marginTop: '10px' }}>Submit Changes</Button></center>
+                            <center><Button onClick={() => this.cancelClick()} variant="contained" color="primary" style={{ marginTop: '10px' }}>Discard Changes</Button> <Button onClick={() => this.submitClick()} variant="contained" color="primary" style={{ marginTop: '10px' }}>Save Changes</Button></center>
                     </Paper>
                     }
                     
