@@ -24,9 +24,10 @@ class Progress extends Component {
         return (
             <>
                 <Box>
-                    <Divider/>
+                    {/* <Divider/> */}
                     <Chart weight={this.props.weight} history={this.props.history} />
-<Divider/>
+                    <br/>
+            <Divider/>
         <center><h1>Your History</h1></center>
 
                     <TableContainer component={Paper}>

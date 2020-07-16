@@ -127,7 +127,7 @@ class OneFeed extends Component {
                             </Grid>
                             <Grid item xs={10}>
                                 <Typography style={{ marginLeft: '10px' }}>
-                                <span style={{ color: '#5DA35B', fontWeight: '600' }}>{this.props.feed.display} {this.props.feed.comment}</span> </Typography>
+                                <span style={{ fontWeight: '600' }}>{this.props.feed.display}</span> <span style={{color: '#5DA35B'}}>{this.props.feed.comment}</span> </Typography>
                                 <Typography style={{ marginLeft: '10px' }}>
                                     <span style={{ fontWeight: '400', fontSize: '12px' }}>{date} </span></Typography>
                             </Grid>

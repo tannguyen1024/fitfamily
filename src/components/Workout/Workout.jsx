@@ -148,6 +148,7 @@ class Workout extends Component {
                     <Stats history={this.props.history}/>
 
                 </Box>
+                <center><Button variant="contained" color="primary" onClick={() => window.scrollTo(0, 0)} style={{ margin: '20px' }}>Return to Top</Button></center>
             </>
         )
     }
