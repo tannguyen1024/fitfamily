@@ -29,6 +29,20 @@ console.log('reqbody:', req.body)
     .catch(() => res.sendStatus(500));
 });
 
+router.put('/:id', (req, res, next) => {
+  const user_id = req.params.id;
+  const username = req.body.username;
+  const display = req.body.display;
+  const email = req.body.email;
+  const phone = req.body.phone;
+  const picture = req.body.picture;
+  console.log('reqbody:', req.body)
+  const queryText = 'UPDATE "user" SET "username" = $1, "display" = $2, email = $3, phone = $4, picture = $5 WHERE id=$6;';
+  pool.query(queryText, [username, display, email, phone, picture, user_id])
+    .then(() => res.sendStatus(201))
+    .catch(() => res.sendStatus(500));
+});
+
 // Handles login form authenticate/login POST
 // userStrategy.authenticate('local') is middleware that we run on this route
 // this middleware will run our POST if successful

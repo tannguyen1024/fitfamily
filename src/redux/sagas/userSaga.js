@@ -20,12 +20,22 @@ function* fetchUser() {
     // the client-side code know the user is logged in
     yield put({ type: 'SET_USER', payload: response.data });
   } catch (error) {
-    console.log('User get request failed', error);
+    console.log('User get request failed:', error);
+  }
+}
+
+function* updateUser(action) {
+  try{
+    yield axios.put(`/api/user/${action.payload.user_id}`, action.payload);
+    yield put({ type: 'FETCH_USER'});
+  } catch (error) {
+    console.log('User update has failed:', error);
   }
 }
 
 function* userSaga() {
   yield takeLatest('FETCH_USER', fetchUser);
+  yield takeLatest('UPDATE_USER', updateUser);
 }
 
 export default userSaga;
