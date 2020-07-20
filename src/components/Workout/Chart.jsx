@@ -34,15 +34,17 @@ class Chart extends Component {
             <>
                 <center><h1>Progress Chart</h1></center>
 
-                <LineChart width={300} height={250} data={this.state.weight}
-                    margin={{ top: 5, right: 45, left: 20, bottom: 5 }}>
-                    <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="date" />
-                    <YAxis domain={['auto', 'auto']} />
-                    <Tooltip />
-                    <Legend />
-                    <Line type="monotone" dataKey="weight" stroke="#8884d8" />
-                </LineChart>
+                <center>
+                    <LineChart width={300} height={250} data={this.state.weight}
+                        margin={{ top: 5, right: 45, left: 20, bottom: 5 }}>
+                        <CartesianGrid strokeDasharray="3 3" />
+                        <XAxis dataKey="date" />
+                        <YAxis domain={['auto', 'auto']} />
+                        <Tooltip />
+                        <Legend />
+                        <Line type="monotone" dataKey="weight" stroke="#8884d8" />
+                    </LineChart>
+                </center>
 
             </>
         )
