@@ -140,7 +140,7 @@ class Setting extends Component {
                             <Grid item xs={12}>
                                 <Typography>Picture URL: {this.props.user.picture}</Typography>
                             </Grid>
-                            </Grid> <center><Button onClick={() => this.editClick()} variant="contained" color="primary" style={{ marginTop: '10px' }}>Edit Profile</Button></center>
+                            </Grid> <center><Button onClick={() => this.props.dispatch({ type: 'LOGOUT' })} variant="contained" color="primary" style={{ marginTop: '10px' }}>Sign Out</Button> <Button onClick={() => this.editClick()} variant="contained" color="primary" style={{ marginTop: '10px' }}>Edit Profile</Button></center>
                     </Paper> :
 
                     <Paper style={{ padding: '10px', borderRadius: '5px', backgroundColor: '#FFFFFF' }}>
@@ -164,7 +164,6 @@ class Setting extends Component {
                             <center><Button onClick={() => this.cancelClick()} variant="contained" color="primary" style={{ marginTop: '10px' }}>Discard Changes</Button> <Button onClick={() => this.submitClick()} variant="contained" color="primary" style={{ marginTop: '10px' }}>Save Changes</Button></center>
                     </Paper>
                     }
-                    
 
                 </Box>
             </>
