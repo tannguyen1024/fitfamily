@@ -78,11 +78,11 @@ class Feed extends Component {
                                 <TextField style={{ paddingLeft: '10px' }} size='small' variant='outlined' value={this.state.comment} fullWidth multiline placeholder={`Post your fitness here, ` + this.props.user.display + '!'} onChange={(event) => this.handleChange(event)} />
                             </Grid>
                         </Grid>
-                        <Grid container justify='space-evenly' alignItems='center' spacing="2">
-                            <Grid item xs={2}>
+                        <Grid container justify='center' alignItems='center'>
+                            <Grid item xs={3}>
                                 <Button color='primary' variant='contained' style={{ margin: '5px' }} onClick={this.gifClick}>GIF</Button> 
                             </Grid>
-                            <Grid item xs={2}>
+                            <Grid item xs={3}>
                                 <Button color='primary' variant='contained' style={{ margin: '5px' }} onClick={this.postComment}>Post</Button>
                             </Grid>
                         </Grid>
@@ -98,12 +98,12 @@ class Feed extends Component {
                                     <TextField style={{ paddingLeft: '10px' }} size='small' variant='outlined' value={this.state.comment} fullWidth multiline placeholder={`Search for a GIF here, ` + this.props.user.display + '!'} onChange={(event) => this.handleChange(event)} />
                                 </Grid>
                             </Grid>
-                        <Grid container justify='space-evenly' alignItems='center' spacing="2">
-                                <Grid item xs={2}>
-                                    <Button color='primary' variant='contained' style={{ margin: '5px' }} onClick={this.gifCancel}>Cancel</Button>
+                        <Grid container justify='center' alignItems='center'>
+                                <Grid item xs={3}>
+                                    <Button color='secondary' variant='contained' style={{ margin: '5px' }} onClick={this.gifCancel}>Cancel</Button>
                                 </Grid>
-                                <Grid item xs={2}>
-                                    <Button color='primary' variant='contained' style={{ margin: '5px' }} onClick={this.searchGif}>Search</Button>
+                                <Grid item xs={3}>
+                                    <Button color='secondary' variant='contained' style={{ margin: '5px' }} onClick={this.searchGif}>Search</Button>
                                 </Grid>
                             </Grid>
                         </Paper>

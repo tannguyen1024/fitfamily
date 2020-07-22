@@ -32,7 +32,7 @@ const mainTheme = createMuiTheme({
       main: '#ff9c08', // Orange
     },
     secondary: {
-      main: '#FFFFFF', // White
+      main: '#FD7450', // Red
     }
   }
 });

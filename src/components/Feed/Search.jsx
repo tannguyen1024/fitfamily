@@ -88,12 +88,12 @@ class Search extends Component {
                             )}
                         </Grid>
                     </Grid>
-                    <Grid container justify='space-evenly' alignItems='center' spacing="2">
-                        <Grid item xs={2}>
-                            <Button color='primary' variant='contained' style={{ margin: '5px' }} onClick={this.cancelClick}>Cancel</Button>
+                    <Grid container justify='center' alignItems='center'>
+                        <Grid item xs={3}>
+                            <Button color='secondary' variant='contained' style={{ margin: '5px' }} onClick={this.cancelClick}>Cancel</Button>
                         </Grid>
-                        <Grid item xs={2}>
-                            <Button color='primary' variant='contained' style={{ margin: '5px' }} onClick={this.postGif}>Post Selected</Button>
+                        <Grid item xs={3}>
+                            <Button color='secondary' variant='contained' style={{ margin: '5px' }} onClick={this.postGif}>Post Selected</Button>
                         </Grid>
 
                     </Grid>
