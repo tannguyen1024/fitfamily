@@ -6,6 +6,7 @@ import feed from './feedReducer';
 import weight from './weightReducer';
 import oneWeight from './weightOneReducer';
 import chart from './chartReducer';
+import giphy from './giphyReducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -21,6 +22,7 @@ const rootReducer = combineReducers({
   weight, // Everyone's weight
   oneWeight, // One person's weight
   chart, // One person's chart
+  giphy, // All Giphy Results
 });
 
 export default rootReducer;

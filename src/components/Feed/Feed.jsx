@@ -9,16 +9,34 @@ import styles from '../Style/Style';
 import Swal from 'sweetalert2/src/sweetalert2.js';
 import '../Style/Swal.scss';
 import Header from '../Header/Header';
-import OneFeed from './OneFeed'
+import OneFeed from './OneFeed';
+import Search from './Search';
 
 class Feed extends Component {
-    state={ comment: '', user_id: this.props.user.id }
+    state = {
+        comment: '',
+        user_id: this.props.user.id,
+        giphy: 0,
+    }
     componentDidMount = () => {
         this.props.dispatch({ type: 'FETCH_FEED' }); /* Gets all of the feed */
     }
 
     handleChange = (event) => {
         this.setState({ comment: event.target.value })
+    }
+
+    gifClick = (event) => {
+        this.setState({ giphy: 1 })
+    }
+
+    gifCancel = (event) => {
+        this.setState({ giphy: 0 })
+    }
+
+    searchGif = (event) => {
+        this.props.dispatch({ type: 'FETCH_SEARCH', payload: this.state.comment });
+        this.setState({ giphy: 2 })
     }
 
     postComment = () => {
@@ -39,7 +57,7 @@ class Feed extends Component {
             }); return
         }
         this.props.dispatch({ type: 'POST_FEED', payload: this.state, history: this.props.history })
-        this.setState({comment: ''})
+        this.setState({ comment: '' })
     }
 
     render() {
@@ -49,26 +67,55 @@ class Feed extends Component {
                 <Header history={this.props.history} />
                 <Box className={classes.margin}>
                     <center><h1>{this.props.user.username}'s Fit Feed</h1></center>
+                    
+                    {this.state.giphy === 0 && 
                     <Paper style={{ padding: '5px', borderRadius: '5px', backgroundColor: '#ededed' }}>
                         <Grid container justify='space-evenly' alignItems='stretch'>
                             <Grid item xs={1}>
-                                <Avatar alt={this.props.user.username} src={this.props.user.picture} style={{marginRight: '5px'}}/>
+                                <Avatar alt={this.props.user.username} src={this.props.user.picture} style={{ marginRight: '5px' }} />
                             </Grid>
                             <Grid item xs={10}>
-                                <TextField style={{ paddingLeft: '10px' }} size='small' variant='outlined' value={this.state.comment} fullWidth multiline placeholder={`Post your fitness here, ` + this.props.user.display + '!'} onChange={(event) => this.handleChange(event)}/>
+                                <TextField style={{ paddingLeft: '10px' }} size='small' variant='outlined' value={this.state.comment} fullWidth multiline placeholder={`Post your fitness here, ` + this.props.user.display + '!'} onChange={(event) => this.handleChange(event)} />
                             </Grid>
                         </Grid>
-                        <Grid container justify='center' alignItems='center'>
-                            <Grid item xs={1}>
-                                <Button color='primary' variant='contained' style={{ marginTop: '5px' }} onClick={this.postComment}>Post</Button>
+                        <Grid container justify='space-evenly' alignItems='center' spacing="2">
+                            <Grid item xs={2}>
+                                <Button color='primary' variant='contained' style={{ margin: '5px' }} onClick={this.gifClick}>GIF</Button> 
+                            </Grid>
+                            <Grid item xs={2}>
+                                <Button color='primary' variant='contained' style={{ margin: '5px' }} onClick={this.postComment}>Post</Button>
                             </Grid>
                         </Grid>
-                    </Paper>
-                        
-                        {this.props.feed.map(feed =>
-                            <OneFeed key={feed.feed_id}  feed={feed}/>
-                        )}
-                    <center><Button variant="contained" color="primary" onClick={() => window.scrollTo(0, 0)} style={{margin: '20px'}}>Return to Top</Button></center>
+                        </Paper>}
+
+                    {this.state.giphy === 1 &&
+                        <Paper style={{ padding: '5px', borderRadius: '5px', backgroundColor: '#ededed' }}>
+                            <Grid container justify='space-evenly' alignItems='stretch'>
+                                <Grid item xs={1}>
+                                    <Avatar alt={this.props.user.username} src={this.props.user.picture} style={{ marginRight: '5px' }} />
+                                </Grid>
+                                <Grid item xs={10}>
+                                    <TextField style={{ paddingLeft: '10px' }} size='small' variant='outlined' value={this.state.comment} fullWidth multiline placeholder={`Search for a GIF here, ` + this.props.user.display + '!'} onChange={(event) => this.handleChange(event)} />
+                                </Grid>
+                            </Grid>
+                        <Grid container justify='space-evenly' alignItems='center' spacing="2">
+                                <Grid item xs={2}>
+                                    <Button color='primary' variant='contained' style={{ margin: '5px' }} onClick={this.gifCancel}>Cancel</Button>
+                                </Grid>
+                                <Grid item xs={2}>
+                                    <Button color='primary' variant='contained' style={{ margin: '5px' }} onClick={this.searchGif}>Search</Button>
+                                </Grid>
+                            </Grid>
+                        </Paper>
+                        }
+
+                    {this.state.giphy === 2 &&
+                        <Search history={this.props.history} />}
+
+                    {this.props.feed.map(feed =>
+                        <OneFeed key={feed.feed_id} feed={feed} />
+                    )}
+                    <center><Button variant="contained" color="primary" onClick={() => window.scrollTo(0, 0)} style={{ margin: '20px' }}>Return to Top</Button></center>
                 </Box>
             </>
         )
@@ -79,7 +126,7 @@ Feed.propTypes = { classes: PropTypes.object.isRequired };
 
 const putStateOnProps = reduxState => ({
     user: reduxState.user,
-    feed: reduxState.feed
+    feed: reduxState.feed,
 });
 
 export default connect(putStateOnProps)(withStyles(styles)(Feed));

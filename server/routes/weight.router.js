@@ -56,8 +56,8 @@ router.post('/feed', rejectUnauthenticated, (req, res) => {
     if (tenDate.length > 10) tenDate = tenDate.substring(0, 10);
     const m = ('logged ' + r.weight + 'lbs for ' + tenDate);
     console.log('New Message is:', m)
-    const query = `INSERT INTO "feed" (user_id, comment, weight) VALUES ($1, $2, $3);`;
-    pool.query(query, [r.user_id, m, true]).then(result => {
+    const query = `INSERT INTO "feed" (user_id, comment, type) VALUES ($1, $2, 'weight');`;
+    pool.query(query, [r.user_id, m]).then(result => {
         res.sendStatus(201);
     }).catch(error => {
         console.log(error);

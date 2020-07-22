@@ -90,7 +90,7 @@ class OneFeed extends Component {
             
             <Paper style={{ marginTop: '20px', padding: '5px', borderRadius: '5px', backgroundColor: '#f7f7f7' }}>
                     
-                    {!this.props.feed.weight && <>
+                    {this.props.feed.type === 'feed' && <>
                         <Grid container justify='space-evenly' alignItems='stretch'>
                             <Grid item xs={1}>
                                 <Avatar alt={this.props.feed.display} src={this.props.feed.picture} />
@@ -120,7 +120,7 @@ class OneFeed extends Component {
                         </Grid> </>
                     }
 
-                    {this.props.feed.weight && <>
+                    {this.props.feed.type === 'weight' && <>
                         <Grid container justify='space-evenly' alignItems='stretch'>
                             <Grid item xs={1}>
                                 <Avatar alt={this.props.feed.display} src={this.props.feed.picture} />
@@ -141,6 +141,34 @@ class OneFeed extends Component {
                             </Grid>
                         </Grid> </>
                     }
+
+                {this.props.feed.type === 'giphy' && <>
+                    <Grid container justify='space-evenly' alignItems='stretch'>
+                        <Grid item xs={1}>
+                            <Avatar alt={this.props.feed.display} src={this.props.feed.picture} />
+                        </Grid>
+                        <Grid item xs={10}>
+                            <Typography style={{ marginLeft: '10px' }}>
+                                <span style={{ fontWeight: '600' }}>{this.props.feed.display} </span></Typography>
+                            <Typography style={{ marginLeft: '10px' }}>
+                                <span style={{ fontWeight: '400', fontSize: '12px' }}>{date} </span></Typography>
+
+                        </Grid>
+                    </Grid>
+                    <Divider />
+                    <Grid container justify='center' alignItems='center'>
+                        <Grid item xs={12} style={{padding: '15px'}}>
+                            <center><img src={this.props.feed.comment} alt="An image" width="100%" style={{ borderRadius: '10px', boxShadow: '3px 3px 10px gray' }} /></center>
+                        </Grid>
+                    </Grid>
+                    <Divider />
+                    <Grid container justify='space-evenly'>
+                        <Grid item xs={4} style={{ marginTop: '5px', textAlign: 'center' }}>
+                            <span style={{ fontWeight: '600', fontSize: '20px' }}>{this.props.feed.upvotes}</span> <FavoriteIcon onClick={this.upvoteClick} style={{ color: 'red', fontSize: '120%' }} />
+                            {this.props.feed.user_id === this.props.user.id && <DeleteIcon onClick={this.deleteClick} style={{ marginLeft: '25px', fontSize: '120%' }} />}
+                        </Grid>
+                    </Grid> </>
+                }
 
 
                 </Paper>
