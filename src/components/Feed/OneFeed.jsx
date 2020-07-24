@@ -29,7 +29,7 @@ class OneFeed extends Component {
         })
         Swal.fire({
             input: 'textarea',
-            inputPlaceholder: `Type "DELETE" Here and press Confirm`,
+            inputPlaceholder: `Type "DELETE" in UPPERCASE here and press Confirm`,
             inputAttributes: {
                 'aria-label': 'New Event Name'
             },
