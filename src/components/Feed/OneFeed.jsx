@@ -158,7 +158,10 @@ class OneFeed extends Component {
                     <Divider />
                     <Grid container justify='center' alignItems='center'>
                         <Grid item xs={12} style={{padding: '15px'}}>
-                            <center><img src={this.props.feed.comment} alt="An image" width="100%" style={{ borderRadius: '10px', boxShadow: '3px 3px 10px gray' }} /></center>
+                            <center><img src={this.props.feed.comment} 
+                            alt="An image" 
+                            width="100%"
+                            style={{ maxHeight: "400px", maxWidth: "400px", borderRadius: '10px', boxShadow: '3px 3px 10px gray' }} /></center>
                         </Grid>
                     </Grid>
                     <Divider />
