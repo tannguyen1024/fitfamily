@@ -8,7 +8,7 @@ Duration: 2 Days
 
 Fit Family aims to motivate friends and family members to shed some of those pandemic pounds we've all put on.  It allows users to post their weight publically or privately and see this information in a useful chart.
 
-To see the fully functional site, please visit: [http://fitfamily.herokuapp.com](http://fitfamily.herokuapp.com)
+To see the fully functional site, please visit: [YouTube](https://youtu.be/9vHi_lcmEuY)
 
 ## Screenshots of Fit Family
 
